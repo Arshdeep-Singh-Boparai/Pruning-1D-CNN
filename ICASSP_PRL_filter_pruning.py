@@ -10,7 +10,7 @@ Created on Mon Sep 14 16:37:58 2020
 # -*- coding: utf-8 -*-
 """
 
-This code ranks the feature maps according to their importance using various criteria layer-wise.
+This code ranks the feature maps of SoundNet according to their importance using various criteria for an intermediate layer.
 (a) ANOVA-based method (b) Entropy based (c) Angle based deviation (d) Rank or directions based 
 
 The steps are followed as:
