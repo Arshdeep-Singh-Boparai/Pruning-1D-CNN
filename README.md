@@ -2,7 +2,7 @@
 
 Definitions:
 '''
-Redundant: A feature map is redundant if it doesnt provide discriminatory information across various classes.
+Redundant feature map: A feature map is redundant if it doesnt provide discriminatory information across various classes.
 Important: the feature map which is not redundant.
 '''
 
