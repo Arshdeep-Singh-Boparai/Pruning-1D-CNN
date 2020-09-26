@@ -8,6 +8,14 @@ Important: the feature map which is not redundant.
 
 This code focuses on identifying feature maps which are redundant/irrelavant as defined above in a well-trained Convolution neural network. Three statistical methods [1] and one geometrical method [2] are used to identify redundancy. 
 
+Flow chart of the codes is as follows:
+
+
+(a) Extract intermediate representations form SoundNet using file .."......py"
+(b) Put files class-wise into a directory using code....."filecopy.py"
+(c) Read class-wise training and testing dataset.
+(d) Identification important feature maps using code.." ICASSP_PRL_important.py"
+
 
 References:
 
