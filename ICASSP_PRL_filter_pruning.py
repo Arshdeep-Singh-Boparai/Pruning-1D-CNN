@@ -14,7 +14,7 @@ This code ranks the feature maps according to their importance using various cri
 (a) ANOVA-based method (b) Entropy based (c) Angle based deviation (d) Rank or directions based 
 
 The steps are followed as:
-	(1) Prepare validation dataset by taking 10 random examples from each class.
+	(1) Prepare validation dataset by taking 10 random examples from each class. extract intermediate representations from SoundNet. 
 	(2) Apply any of the above mentioned methods (a)-(d) to compute important feature maps.
 	(3) Selection of top few important feature maps using mimimum KL-divergence for (a)-(c).
 Created on Mon Jul  9 22:45:06 2018
