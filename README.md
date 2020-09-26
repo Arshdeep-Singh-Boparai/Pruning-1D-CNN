@@ -15,4 +15,4 @@ References:
 
 2. Singh, Arshdeep, Padmanabhan Rajan, and Arnav Bhavsar. "SVD-based redundancy removal in 1-D CNNs for acoustic scene classification." Pattern Recognition Letters 131 (2020): 383-389.
 
-3. 
+3. Aytar, Yusuf, Carl Vondrick, and Antonio Torralba. "Soundnet: Learning sound representations from unlabeled video." Advances in neural information processing systems. 2016.
