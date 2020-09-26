@@ -38,6 +38,7 @@ import pickle
 import os
 from keras.models import Model
 from keras.models import load_model
+import librosa
 #%%
 #import numpy as np
 param_G=np.load("/home/arshdeep/SoundNet-tensorflow-master/models/sound8.npy", encoding = 'latin1').item()
@@ -49,7 +50,7 @@ initia_weights1=[np.reshape(param_G['conv1']['weights'],(64,1,16)),param_G['conv
 
 model =Sequential()
 
-model.add(Conv1D(16,64,strides=2,input_shape=(44100*6,1))) #layer1
+model.add(Conv1D(16,64,strides=2,input_shape=(44100*30,1))) #layer1 30 sec audio length sampled at 44.1kHz
 model.add(ZeroPadding1D(padding=16))
 model.add(BatchNormalization()) #layer2
 convout1= Activation('relu')
@@ -132,26 +133,7 @@ model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer=keras.optimizers.Adam(),
               metrics=['accuracy'])
 
-#model.load_weights('/home/arshdeep/DCASE2018_FINETUNE/best_model_dcase18_SoundNet.h5py')
 
-#%%
-import librosa
-
-#%% load_model
-#base_model=model
-
-#%%
-#layer_4=[];layer_6=[];layer_7=[];layer_8=[];layer_10=[];layer_11=[];layer_13=[];layer_14=[];layer_16=[];layer_17=[];layer_18=[];layer_20=[];layer_21=[];layer_23=[];layer_24=[];
-
-#layers=['max_pooling1d_1','batch_normalization_2','activation_2','max_pooling1d_2','batch_normalization_3','activation_3','batch_normalization_4','activation_4','batch_normalization_5','activation_5','max_pooling1d_3','batch_normalization_6','activation_6','batch_normalization_7','activation_7']
-#layers=['activation_7','batch_normalization_7']
-#name=[layer_4,layer_6,layer_7,layer_8,layer_10,layer_11,layer_13,layer_14,layer_16,layer_17,layer_18,layer_20,layer_21,layer_23,layer_24]
-#feature_conv1d7=model1.predict(x_train)
-
-#layers=['activation_7']
-#name1=[4,6,7,8,10,11,13,14,16,17,18,20,21,23,24]
-#name1=[24,23]
-#%%
 
 def feature_save(layer_name,example,part,base_model):
 		model_sub_layer=base_model
@@ -166,7 +148,7 @@ def feature_save(layer_name,example,part,base_model):
 		
 def load_audio(audio_path, sr=None):
     # By default, librosa will resample the signal to 22050Hz(sr=None). And range in (-1., 1.)
-    sound_sample, sr = librosa.load(audio_path, sr=44100, mono=False,duration=6.0)
+    sound_sample, sr = librosa.load(audio_path, sr=44100, mono=False,duration=30)
 
     return sound_sample, sr
 
@@ -221,17 +203,17 @@ for root, dirs, files in os.walk("/media/arshdeep/B294A78494A749A52/DCASE_2019_S
 					feature21=base_model_21.predict(example)
 					feature20=base_model_20.predict(example)
 					feature18=base_model_18.predict(example)
-#					feature17=base_model_17.predict(example)
-#					feature16=base_model_16.predict(example)
-#					feature14=base_model_14.predict(example)
-#					feature13=base_model_13.predict(example)
-#					feature11=base_model_11.predict(example)
-#					feature10=base_model_10.predict(example)
-#					feature8=base_model_8.predict(example)
-#					feature7=base_model_7.predict(example)
-#					feature6=base_model_6.predict(example)
-#					feature4=base_model_4.predict(example)	
-#					feature3=base_model_3.predict(example)	
+					feature17=base_model_17.predict(example)
+					feature16=base_model_16.predict(example)
+					feature14=base_model_14.predict(example)
+					feature13=base_model_13.predict(example)
+					feature11=base_model_11.predict(example)
+					feature10=base_model_10.predict(example)
+					feature8=base_model_8.predict(example)
+					feature7=base_model_7.predict(example)
+					feature6=base_model_6.predict(example)
+					feature4=base_model_4.predict(example)	
+					feature3=base_model_3.predict(example)	
 
 				
 					filename24='24'+'_'+part[:-4]
@@ -250,19 +232,15 @@ for root, dirs, files in os.walk("/media/arshdeep/B294A78494A749A52/DCASE_2019_S
 					filename7='7'+'_'+part[:-4]
 					filename4='4'+'_'+part[:-4]					
 					filename21='21'+'_'+part[:-4]
-#					filename3='3'+'_'+part[:-4]							
-#					path23=os.path.join('DCASE18_finetune_feature',filename23)#+str([:-4])
-#					path21=os.path.join('DCASE18_finetune_feature',filename21)#+str([:-4])
-#					path20=os.path.join('DCASE18_finetune_feature',filename20)#+str([:-4])
+
 				
 					np.save(filename24,np.reshape(feature24,[np.shape(feature24)[1],np.shape(feature24)[2]]))
 					np.save(filename23,np.reshape(feature23,[np.shape(feature23)[1],np.shape(feature23)[2]]))
 					np.save(filename21,np.reshape(feature21,[np.shape(feature21)[1],np.shape(feature21)[2]]))	
 					np.save(filename20,np.reshape(feature20,[np.shape(feature20)[1],np.shape(feature20)[2]]))					
 					np.save(filename18,np.reshape(feature18,[np.shape(feature18)[1],np.shape(feature18)[2]]))
-#					np.save(filename17,np.reshape(feature17,[np.shape(feature17)[1],np.shape(feature17)[2]]))
-#					np.save(filename16,np.reshape(feature16,[np.shape(feature16)[1],np.shape(feature16)[2]]))
-###
+					np.save(filename17,np.reshape(feature17,[np.shape(feature17)[1],np.shape(feature17)[2]]))
+					np.save(filename16,np.reshape(feature16,[np.shape(feature16)[1],np.shape(feature16)[2]]))
 					np.save(filename11,np.reshape(feature11,[np.shape(feature11)[1],np.shape(feature11)[2]]))
 					np.save(filename4,np.reshape(feature4,[np.shape(feature4)[1],np.shape(feature4)[2]]))
 					np.save(filename7,np.reshape(feature7,[np.shape(feature7)[1],np.shape(feature7)[2]]))
@@ -271,22 +249,3 @@ for root, dirs, files in os.walk("/media/arshdeep/B294A78494A749A52/DCASE_2019_S
 					np.save(filename14,np.reshape(feature14,[np.shape(feature14)[1],np.shape(feature14)[2]]))
 					np.save(filename13,np.reshape(feature13,[np.shape(feature13)[1],np.shape(feature13)[2]]))
 					np.save(filename10,np.reshape(feature10,[np.shape(feature10)[1],np.shape(feature10)[2]]))
-#					np.save(filename3,np.reshape(feature3,[np.shape(feature3)[1],np.shape(feature3)[2]]))
-
-
-			#feature_save(layer_name,example,part,base_model)
-
-
-
-#%%
-'''	
-import scipy.io
-scipy.io.savemat(filename24, mdict={'arr': np.reshape(feature24,[np.shape(feature24)[1],np.shape(feature24)[2]])})
-scipy.io.savemat(filename4, mdict={'arr': np.reshape(feature4,[np.shape(feature4)[1],np.shape(feature4)[2]])})
-scipy.io.savemat(filename7, mdict={'arr': np.reshape(feature7,[np.shape(feature7)[1],np.shape(feature7)[2]])})
-scipy.io.savemat(filename11, mdict={'arr': np.reshape(feature11,[np.shape(feature11)[1],np.shape(feature11)[2]])})
-scipy.io.savemat(filename14, mdict={'arr': np.reshape(feature14,[np.shape(feature14)[1],np.shape(feature14)[2]])})
-scipy.io.savemat(filename17, mdict={'arr': np.reshape(feature17,[np.shape(feature17)[1],np.shape(feature17)[2]])})
-scipy.io.savemat(filename21, mdict={'arr': np.reshape(feature21,[np.shape(feature21)[1],np.shape(feature21)[2]])})
-scipy.io.savemat(filename3, mdict={'arr': np.reshape(feature3,[np.shape(feature3)[1],np.shape(feature3)[2]])})
-'''
