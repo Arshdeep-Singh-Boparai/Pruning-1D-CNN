@@ -12,8 +12,12 @@ Flow chart of the codes is as follows:
 
 
 (a) Extract intermediate representations form SoundNet using file .."Soundnet_layerwise_featuremap_extraction.py"
+
+
 (b) Put files class-wise into a directory using code....."filecopy.py"
+
 (c) Read class-wise training and testing dataset using "soundnet_layerwise_feature_read.py"
+
 (d) Identification important feature maps using code.."ICASSP_PRL_filter_pruning.py"
 
 
