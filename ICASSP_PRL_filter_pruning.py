@@ -93,8 +93,8 @@ for i in range(np.shape(data1)[2]):
 				filter_i[141],filter_i[142],filter_i[143],filter_i[144],filter_i[145],filter_i[146],filter_i[147],filter_i[148],filter_i[149])
     print(p,"for",i,"filter")
     pV.append(p)
-    if p<0.01 :
-        index.append(i)
+    #if p<0.01 :
+     #   index.append(i)
     filter_i=[]		
 
 index_sorted_anova=np.argsort(pV)
@@ -102,7 +102,7 @@ index_sorted_anova=np.argsort(pV)
 #%% (b) Entropy based ranking
 
 
-
+#%%........................................................................................
 
 filter_i=[]
 index=[]
@@ -126,7 +126,7 @@ for i in range(np.shape(data1)[2]):
 #    filter_data=[]
 index_sorted_DE=np.argsort(entropy_filter) ## increasing order of entropy
 
-#%%angular deviation based   ordering
+#%% angular deviation based   ordering........................................................................................
 data1=data_normalized
 sim_mat=[]
 for i in range(150):
@@ -145,9 +145,9 @@ index_sorted_CS=np.argsort(sim_std)
 #np.save(filename,sim_index)
 
 
-#%% Selection of top few important feature maps based on minimum distribution  using ordered feature maps obtained from any of the above (a)-(c) methods.
+#%% Selection of top few important feature maps based on minimum distribution  using ordered feature maps obtained from any of the above (a)-(c) methods..........................
 
-#%% compute distribution of all feature maps and find KL divergence
+#%% compute distribution of all feature maps and find KL divergence...................................................
 new_data=data1.flatten()
 nanlist=[]
 for ii in range(len(new_data)):
@@ -171,7 +171,7 @@ for i in range(np.size(data1,2)):
 	KL.append(scipy.stats.entropy(distribution_true,distrubtion_pred, base=None))
 
 
-#%% selection of top few important feature maps using ranked feature maps
+#%% selection of top few important feature maps using ranked feature maps...............................................................................
 k=0
 for i in range(len(KL)):
 	win=KL[i:i+10]
@@ -186,7 +186,7 @@ print('The top-l feature maps are :' ,final_index)
 		
 	
 
-#%% (d) rank based feature-map selection
+#%% (d) rank based feature-map selection (geometrical method).................................................................................................................
 
 Th= 150 # threshold 
 os.chdir('/home/arshdeep/FILTER_SELECTION_WORK_JULY18/rank_based')
